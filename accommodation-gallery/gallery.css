@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+.skibuss-gallery .button {
+    /* background-color: red; */
+}
+
+.skibuss-gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+.images {
+    width: 90%;
+    display: flex;
+    gap: 1vw;
+    flex-wrap: wrap;
+}
+
+img {
+    width: 370px;
+    height: auto;
+    object-fit: cover;
+}
