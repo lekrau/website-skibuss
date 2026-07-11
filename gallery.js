@@ -1,11 +1,25 @@
 "use strict";
 
-const images = document.querySelectorAll(".skibuss-gallery img");
-console.log(images);
-
-images.forEach(image => image.addEventListener("click", event => {
+// FUNCTIONS
+const showOverlay = event => {
     const target = event.target;
-    const src = target.getAttribute("src");
-    console.log(target);
-    console.log(src);
-}));
+    const source = target.getAttribute("src");
+    console.log("target", target);
+    console.log("image", source);
+
+    const skibussGallery = document.querySelector(".skibuss-gallery");
+    const overlay = document.createElement("div");
+    const image = document.createElement("img");
+    //  setAttribute is a HTML injection sink?
+    image.setAttribute("src", source);
+    overlay.classList.add("overlay");
+    skibussGallery.appendChild(overlay);
+    overlay.appendChild(image);
+}
+
+// MAIN
+const images = document.querySelectorAll(".skibuss-gallery img");
+// console.log(images);
+
+// Add event listeners
+images.forEach(image => image.addEventListener("click", showOverlay));
