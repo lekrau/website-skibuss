@@ -72,6 +72,7 @@ h6 {
 :root {
     --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --image-fill: 95%;
+    --button-size: min(8vh, 8vw);
 }
 
 /*
@@ -120,4 +121,18 @@ img {
     height: var(--image-fill);
     max-height: var(--image-fill);
     object-fit: contain;
+}
+
+.overlay .close {
+    width: var(--button-size);
+    height: var(--button-size);
+    position: absolute;
+    /* Todo: Fix button position (aligned with image) */
+    /* left: calc(var(--image-fill) + (100% - var(--image-fill)) / 4); */
+    right: calc(100% - var(--image-fill));
+    top: calc(100% - var(--image-fill));
+    /* bottom: calc(var(--image-fill) - (100% - var(--image-fill))); */
+    cursor: pointer;
+    /* Todo: Make button transparent? */
+    /* background-color: rgba(0, 0, 0, 0); */
 }
