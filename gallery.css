@@ -99,6 +99,8 @@ img {
     width: 370px;
     height: auto;
     object-fit: cover;
+    /* Todo: Requires specific behavior when overlay is active */
+    /* cursor: pointer; */
 }
 
 .plan {

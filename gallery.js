@@ -18,6 +18,7 @@ const showOverlay = event => {
     close.classList.add("close");
     close.textContent = "x";
     close.addEventListener("click", closeOverlay);
+    document.addEventListener("keydown", escKey);
 
     skibussGallery.appendChild(overlay);
     overlay.appendChild(image);
@@ -27,6 +28,14 @@ const showOverlay = event => {
 const closeOverlay = () => {
     const overlay = document.querySelector(".overlay");
     overlay.remove();
+    document.removeEventListener("keydown", escKey);
+};
+
+const escKey = () => {
+    const key = event.key;
+    if (key === "Escape") {
+        closeOverlay();
+    }
 };
 
 // MAIN
