@@ -25,7 +25,8 @@ const showOverlay = event => {
 };
 
 const closeOverlay = () => {
-    console.log("Close button clicked!");  
+    const overlay = document.querySelector(".overlay");
+    overlay.remove();
 };
 
 // MAIN
