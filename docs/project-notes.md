@@ -11,15 +11,8 @@ Entwickle HTML, CSS und JS primär lokal in VSCode und versioniere alles mit Git
 
 **Nicht:** Drei Wochen lokal bauen → einmal in Mozello einfügen → Überraschungen.
 
-## Meilensteine
-**Unterkunftsgalerie**
-1. HTML-Struktur und Bilder werden sauber angezeigt.
-2. Gruppen und Grid-Layout funktionieren.
-3. Bildvergrößerung / Overlay funktioniert.
-4. Aufräumen, Text, Reihenfolge und rudimentäre Mobilansicht.
-
-
-https://docs.google.com/spreadsheets/d/1sWXWGvt8SiB8gyRnQEZOHX776fL0yKoMb_30K_nATZc/edit?usp=sharing
+## Meilensteinplan
+[Google Sheets](https://docs.google.com/spreadsheets/d/1sWXWGvt8SiB8gyRnQEZOHX776fL0yKoMb_30K_nATZc/edit?usp=sharing)
 
 
 ## Dateistruktur
