@@ -88,14 +88,14 @@ h6 {
     flex-direction: column;
 }
 
-.images {
+.skibuss-gallery .images {
     width: 90%;
     display: flex;
     gap: 1vw;
     flex-wrap: wrap;
 }
 
-img {
+.skibuss-gallery img {
     width: 370px;
     height: auto;
     object-fit: cover;
@@ -103,11 +103,11 @@ img {
     /* cursor: pointer; */
 }
 
-.plan {
+.skibuss-gallery .plan {
     object-fit: contain;
 }
 
-.overlay {
+.skibuss-gallery .overlay {
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -125,7 +125,7 @@ img {
     object-fit: contain;
 }
 
-.overlay .close {
+.skibuss-gallery .overlay .close {
     width: var(--button-size);
     height: var(--button-size);
     position: absolute;

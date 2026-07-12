@@ -1,5 +1,8 @@
 "use strict";
 
+// CONSTANTS
+const CSS_CLASS = ".skibuss-gallery";
+
 // FUNCTIONS
 const showOverlay = event => {
     const target = event.target;
@@ -7,7 +10,7 @@ const showOverlay = event => {
     // console.log("target", target);
     // console.log("image", source);
 
-    const skibussGallery = document.querySelector(".skibuss-gallery");
+    const skibussGallery = document.querySelector(CSS_CLASS);
     const overlay = document.createElement("div");
     const image = document.createElement("img");
     const close = document.createElement("button");
@@ -26,7 +29,7 @@ const showOverlay = event => {
 };
 
 const closeOverlay = () => {
-    const overlay = document.querySelector(".overlay");
+    const overlay = document.querySelector(CSS_CLASS + " .overlay");
     overlay.remove();
     document.removeEventListener("keydown", escKey);
 };
@@ -39,7 +42,7 @@ const escKey = () => {
 };
 
 // MAIN
-const images = document.querySelectorAll(".skibuss-gallery img");
+const images = document.querySelectorAll(CSS_CLASS + " img");
 // console.log(images);
 
 // Add event listeners
