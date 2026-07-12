@@ -7,8 +7,6 @@ const CSS_CLASS = ".skibuss-gallery";
 const showOverlay = event => {
     const target = event.target;
     const source = target.getAttribute("src");
-    // console.log("target", target);
-    // console.log("image", source);
 
     const skibussGallery = document.querySelector(CSS_CLASS);
     const overlay = document.createElement("div");
@@ -22,6 +20,7 @@ const showOverlay = event => {
     close.textContent = "x";
     close.addEventListener("click", closeOverlay);
     document.addEventListener("keydown", escKey);
+    overlay.addEventListener("click", backgroundClick);
 
     skibussGallery.appendChild(overlay);
     overlay.appendChild(image);
@@ -34,16 +33,26 @@ const closeOverlay = () => {
     document.removeEventListener("keydown", escKey);
 };
 
-const escKey = () => {
+const escKey = event => {
     const key = event.key;
     if (key === "Escape") {
         closeOverlay();
     }
 };
 
+const backgroundClick = event => {
+    const target = event.target;
+    const overlay = document.querySelector(CSS_CLASS + " .overlay");
+    const image = document.querySelector(CSS_CLASS + " .overlay img");
+    if (target === image) {
+        // Do nothing
+    } else if (target === overlay) {
+        closeOverlay();
+    }
+};
+
 // MAIN
 const images = document.querySelectorAll(CSS_CLASS + " img");
-// console.log(images);
 
 // Add event listeners
 images.forEach(image => image.addEventListener("click", showOverlay));

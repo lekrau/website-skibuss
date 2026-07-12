@@ -117,12 +117,13 @@ h6 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-.overlay img {
-    width: var(--image-fill);
+.skibuss-gallery .overlay img {
+    /* width: var(--image-fill); */
     max-width: var(--image-fill);
-    height: var(--image-fill);
+    /* height: var(--image-fill); */
     max-height: var(--image-fill);
-    object-fit: contain;
+    /* object-fit: contain; */
+    object-fit: fill;
 }
 
 .skibuss-gallery .overlay .close {
