@@ -120,6 +120,7 @@ h6 {
 
 .skibuss-gallery .overlay img {
     /* width: var(--image-fill); */
+    width: initial;
     max-width: var(--image-fill);
     /* height: var(--image-fill); */
     max-height: var(--image-fill);

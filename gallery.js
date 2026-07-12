@@ -14,7 +14,7 @@ const showOverlay = event => {
     const close = document.createElement("button");
 
     //  setAttribute is a HTML injection sink?
-    image.setAttribute("src", source);
+    image.setAttribute("src", getFullResolution(source));
     overlay.classList.add("overlay");
     close.classList.add("close");
     close.textContent = "x";
@@ -26,6 +26,15 @@ const showOverlay = event => {
     overlay.appendChild(image);
     overlay.appendChild(close);
 };
+
+const getFullResolution = thumb => {
+    const THUMB_IDENTIFIER = "-thumb"
+    const position = thumb.indexOf(THUMB_IDENTIFIER);
+    const fileName = thumb.substring(0, position);
+    const fileExtension = thumb.substring(position + THUMB_IDENTIFIER.length);
+    const result = fileName + fileExtension;
+    return result;
+}
 
 const closeOverlay = () => {
     const overlay = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay");
