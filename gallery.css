@@ -130,30 +130,29 @@ h6 {
     object-fit: fill;
 }
 
-.skibuss-gallery .overlay .close {
+.skibuss-gallery .overlay button {
     width: var(--button-size);
     height: var(--button-size);
     position: absolute;
-    /* Todo: Fix button position (aligned with image) */
-    /* left: calc(var(--image-fill) + (100% - var(--image-fill)) / 4); */
-    right: calc(100% - var(--image-fill));
-    top: calc(100% - var(--image-fill));
-    /* bottom: calc(var(--image-fill) - (100% - var(--image-fill))); */
     cursor: pointer;
     /* Todo: Make button transparent? */
     /* background-color: rgba(0, 0, 0, 0); */
 }
 
-.skibuss-gallery .overlay .next {
-    width: var(--button-size);
-    height: var(--button-size);
-    position: absolute;
+.skibuss-gallery .overlay .close {
     /* Todo: Fix button position (aligned with image) */
     /* left: calc(var(--image-fill) + (100% - var(--image-fill)) / 4); */
     right: calc(100% - var(--image-fill));
-    top: calc(100% - var(--image-fill)/2);
+    top: calc(100% - var(--image-fill));
     /* bottom: calc(var(--image-fill) - (100% - var(--image-fill))); */
-    cursor: pointer;
-    /* Todo: Make button transparent? */
-    /* background-color: rgba(0, 0, 0, 0); */
+}
+
+.skibuss-gallery .overlay .next {
+    right: calc(100% - var(--image-fill));
+    top: calc(100% - var(--image-fill)/2);
+}
+
+.skibuss-gallery .overlay .previous {
+    left: calc(100% - var(--image-fill));
+    top: calc(100% - var(--image-fill)/2);
 }

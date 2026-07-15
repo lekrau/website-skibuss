@@ -10,18 +10,23 @@ const showOverlay = () => {
     const image = document.createElement("img");
     const close = document.createElement("button");
     const next = document.createElement("button");
+    const previous = document.createElement("button");
 
     //  setAttribute is a HTML injection sink?
     image.setAttribute("src", getFullResolution(source));
     overlay.classList.add("overlay");
-    
+
     close.classList.add("close");
     close.textContent = "x";
     close.addEventListener("click", closeOverlay);
-    
+
     next.classList.add("next");
     next.textContent = ">";
     next.addEventListener("click", nextImage);
+
+    previous.classList.add("previous");
+    previous.textContent = "<";
+    previous.addEventListener("click", previousImage);
 
     document.addEventListener("keydown", escKey);
     overlay.addEventListener("click", backgroundClick);
@@ -31,6 +36,7 @@ const showOverlay = () => {
     overlay.appendChild(image);
     overlay.appendChild(close);
     overlay.appendChild(next);
+    overlay.appendChild(previous);
 };
 
 const thumbnailClick = event => {
@@ -84,6 +90,14 @@ const getImagePosition = image => {
 const nextImage = () => {
     if (currentImagePosition < images.length - 1) {
         currentImagePosition++;
+        closeOverlay();
+        showOverlay();
+    }
+};
+
+const previousImage = () => {
+    if (currentImagePosition > 0) {
+        currentImagePosition--;
         closeOverlay();
         showOverlay();
     }
