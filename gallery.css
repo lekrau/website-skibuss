@@ -53,6 +53,8 @@ h6 {
 
 p {
     text-wrap: pretty;
+    /* New from https://web.dev/articles/min-max-clamp#width */
+    width: clamp(45ch, 50%, 75ch);
 }
 
 h1,
