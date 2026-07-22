@@ -4,39 +4,48 @@
 const GALLERY_ROOT_SELECTOR = ".skibuss-gallery";
 
 // FUNCTIONS
-const showOverlay = () => {
-    const source = images[currentImagePosition].getAttribute("src");
-    const overlay = document.createElement("div");
-    const image = document.createElement("img");
-    const close = document.createElement("button");
-    const next = document.createElement("button");
-
-    //  setAttribute is a HTML injection sink?
-    image.setAttribute("src", getFullResolution(source));
-    overlay.classList.add("overlay");
-    
-    close.classList.add("close");
-    close.textContent = "x";
-    close.addEventListener("click", closeOverlay);
-    
-    next.classList.add("next");
-    next.textContent = ">";
-    next.addEventListener("click", nextImage);
-
-    document.addEventListener("keydown", escKey);
-    overlay.addEventListener("click", backgroundClick);
-
-    const skibussGallery = document.querySelector(GALLERY_ROOT_SELECTOR);
-    skibussGallery.appendChild(overlay);
-    overlay.appendChild(image);
-    overlay.appendChild(close);
-    overlay.appendChild(next);
-};
-
 const thumbnailClick = event => {
     const target = event.target;
     currentImagePosition = getImagePosition(target);
-    showOverlay(currentImagePosition);
+    showOverlay();
+};
+
+const showOverlay = () => {
+    const source = images[currentImagePosition].getAttribute("src");
+    const overlay = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay");
+    // WIESO IST HIER BEREITS DAS IMG (SRC) GEÄNDERT?
+    const image = overlay.querySelector(".overlay__image");
+    const close = overlay.querySelector(".overlay__button--close");
+    const next = overlay.querySelector(".overlay__button--nav--next");
+    const previous = overlay.querySelector(".overlay__button--nav--previous");
+
+
+    //  setAttribute is a HTML injection sink?
+    image.setAttribute("src", getFullResolution(source));
+    overlay.classList.remove("overlay--inactive")
+
+    document.addEventListener("keydown", escKey);
+    // Ggf. zusätzlich navigation per Pfeiltasten einbauen
+    overlay.addEventListener("click", backgroundClick);
+    close.addEventListener("click", closeOverlay);
+    next.addEventListener("click", nextImage);
+    previous.addEventListener("click", previousImage);
+};
+
+
+const closeOverlay = () => {
+    const overlay = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay");
+    const close = overlay.querySelector(".overlay__button--close");
+    const next = overlay.querySelector(".overlay__button--nav--next");
+    const previous = overlay.querySelector(".overlay__button--nav--previous");
+
+    overlay.classList.add("overlay--inactive")
+
+    document.removeEventListener("keydown", escKey);
+    overlay.removeEventListener("click", backgroundClick);
+    close.removeEventListener("click", closeOverlay);
+    next.removeEventListener("click", nextImage);
+    previous.removeEventListener("click", previousImage);
 };
 
 const getFullResolution = thumb => {
@@ -48,12 +57,6 @@ const getFullResolution = thumb => {
     return result;
 }
 
-const closeOverlay = () => {
-    const overlay = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay");
-    overlay.remove();
-    document.removeEventListener("keydown", escKey);
-};
-
 const escKey = event => {
     const key = event.key;
     if (key === "Escape") {
@@ -63,11 +66,13 @@ const escKey = event => {
 
 const backgroundClick = event => {
     const target = event.target;
-    const overlay = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay");
-    const image = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay img");
-    if (target === image) {
+    const image = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay__image");
+    const close = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay__button--close");
+    const next = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay__button--nav--next");
+    const previous = document.querySelector(GALLERY_ROOT_SELECTOR + " .overlay__button--nav--previous");
+    if (target === image || target === close || target === next || target === previous) {
         // Do nothing
-    } else if (target === overlay) {
+    } else {
         closeOverlay();
     }
 };
@@ -89,8 +94,16 @@ const nextImage = () => {
     }
 };
 
+const previousImage = () => {
+    if (currentImagePosition > 0) {
+        currentImagePosition--;
+        closeOverlay();
+        showOverlay();
+    }
+};
+
 // MAIN
-const images = document.querySelectorAll(GALLERY_ROOT_SELECTOR + " img");
+const images = document.querySelectorAll(GALLERY_ROOT_SELECTOR + " .images img");
 var currentImagePosition = -1;
 
 // Add event listeners
@@ -100,14 +113,3 @@ images.forEach(image => image.addEventListener("click", thumbnailClick));
 // Plan Bild-Navigation
 // Änderung an bestehender LogiK: Das aktuelle Bild wird durch eine Position im Array abgebildet -> array[akt] liefert die benötigte SRC
 // Woher weiß das Bild, in welchem Stock es ist?
-
-
-// Vermutlich obsolet
-
-// const imageArray = [];
-
-// const createImageArray = () => {
-//     if (imageArray === []) {
-//         images.forEach
-//     }
-// };

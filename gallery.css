@@ -116,7 +116,6 @@ h6 {
     inset-inline-start: 0;
     inset-block-start: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    /* display: none; */
     display: grid;
     grid-template-areas:
         "top top top"
@@ -126,6 +125,10 @@ h6 {
     grid-template-rows: var(--overlay-side-size) min-content var(--overlay-side-size);
     padding: var(--overlay-padding);
     font-family: var(--system-ui);
+}
+
+.skibuss-gallery .overlay--inactive {
+    display: none;
 }
 
 .skibuss-gallery .overlay__button {
