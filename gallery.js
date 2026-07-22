@@ -20,10 +20,15 @@ const showOverlay = () => {
     const close = overlay.querySelector(".overlay__button--close");
     const next = overlay.querySelector(".overlay__button--nav--next");
     const previous = overlay.querySelector(".overlay__button--nav--previous");
-
+    const imageTotal = overlay.querySelector(".overlay__bottom__caption__image-total");
+    const currentImage = overlay.querySelector(".overlay__bottom__caption__current-image");
+    const floor = overlay.querySelector(".overlay__bottom__caption__floor");
 
     //  setAttribute is a HTML injection sink?
     image.setAttribute("src", getFullResolution(source));
+    imageTotal.textContent = images.length;
+    currentImage.textContent = currentImagePosition + 1;
+    floor.textContent = getFloor(source);
     overlay.classList.remove("overlay--inactive")
 
     document.addEventListener("keydown", keydown);
@@ -56,6 +61,18 @@ const getFullResolution = thumb => {
     const fileExtension = thumb.substring(position + THUMB_IDENTIFIER.length);
     const result = fileName + fileExtension;
     return result;
+}
+
+const getFloor = thumb => {
+    const FOLDER = "/";
+    const TRANSLATION = "stāvs";
+    const position = thumb.indexOf(FOLDER) + 1;
+    const floor = thumb.substring(position, position + 1);
+    if (floor === "0") {
+        return "";
+    } else {
+        return `${floor} ${TRANSLATION}`;
+    }
 }
 
 const keydown = event => {
