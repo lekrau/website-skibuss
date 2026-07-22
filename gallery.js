@@ -1,5 +1,7 @@
 "use strict";
 
+// WEITER: Caption aktualisieren
+
 // CONSTANTS
 const GALLERY_ROOT_SELECTOR = ".skibuss-gallery";
 
@@ -24,8 +26,7 @@ const showOverlay = () => {
     image.setAttribute("src", getFullResolution(source));
     overlay.classList.remove("overlay--inactive")
 
-    document.addEventListener("keydown", escKey);
-    // Ggf. zusätzlich navigation per Pfeiltasten einbauen
+    document.addEventListener("keydown", keydown);
     overlay.addEventListener("click", backgroundClick);
     close.addEventListener("click", closeOverlay);
     next.addEventListener("click", nextImage);
@@ -41,7 +42,7 @@ const closeOverlay = () => {
 
     overlay.classList.add("overlay--inactive")
 
-    document.removeEventListener("keydown", escKey);
+    document.removeEventListener("keydown", keydown);
     overlay.removeEventListener("click", backgroundClick);
     close.removeEventListener("click", closeOverlay);
     next.removeEventListener("click", nextImage);
@@ -57,10 +58,14 @@ const getFullResolution = thumb => {
     return result;
 }
 
-const escKey = event => {
+const keydown = event => {
     const key = event.key;
     if (key === "Escape") {
         closeOverlay();
+    } else if (key === "ArrowRight") {
+        nextImage();
+    } else if (key === "ArrowLeft") {
+        previousImage();
     }
 };
 
