@@ -53,6 +53,8 @@ h6 {
 
 p {
     text-wrap: pretty;
+    /* New from https://web.dev/articles/min-max-clamp#width */
+    width: clamp(45ch, 50%, 75ch);
 }
 
 h1,
@@ -72,7 +74,7 @@ h6 {
 :root {
     --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --image-fill: 95%;
-    --button-size: min(8vh, 8vw);
+    --button-size: 40px;
 }
 
 /*
@@ -96,7 +98,7 @@ h6 {
     flex-wrap: wrap;
 }
 
-.skibuss-gallery img {
+.skibuss-gallery .images img {
     width: 370px;
     height: auto;
     object-fit: cover;
@@ -116,43 +118,59 @@ h6 {
     inset-block-start: 0;
     background-color: rgba(0, 0, 0, 0.7);
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-areas:
+        "top top top"
+        "middle-left middle-center middle-right"
+        "bottom bottom bottom";
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 50px;
+    padding: 10px;
 }
 
-.skibuss-gallery .overlay img {
-    /* width: var(--image-fill); */
-    width: initial;
-    max-width: var(--image-fill);
-    /* height: var(--image-fill); */
-    max-height: var(--image-fill);
-    /* object-fit: contain; */
-    object-fit: fill;
-}
-
-.skibuss-gallery .overlay .close {
+.skibuss-gallery .overlay__button {
     width: var(--button-size);
     height: var(--button-size);
-    position: absolute;
-    /* Todo: Fix button position (aligned with image) */
-    /* left: calc(var(--image-fill) + (100% - var(--image-fill)) / 4); */
-    right: calc(100% - var(--image-fill));
-    top: calc(100% - var(--image-fill));
-    /* bottom: calc(var(--image-fill) - (100% - var(--image-fill))); */
     cursor: pointer;
     /* Todo: Make button transparent? */
     /* background-color: rgba(0, 0, 0, 0); */
 }
 
-.skibuss-gallery .overlay .next {
-    width: var(--button-size);
-    height: var(--button-size);
-    position: absolute;
-    /* Todo: Fix button position (aligned with image) */
-    /* left: calc(var(--image-fill) + (100% - var(--image-fill)) / 4); */
-    right: calc(100% - var(--image-fill));
-    top: calc(100% - var(--image-fill)/2);
-    /* bottom: calc(var(--image-fill) - (100% - var(--image-fill))); */
-    cursor: pointer;
-    /* Todo: Make button transparent? */
-    /* background-color: rgba(0, 0, 0, 0); */
+.overlay__top {
+    grid-area: top;
+    display: flex;
+    justify-content: end;
+}
+
+.skibuss-gallery .overlay__button--close {}
+
+.overlay__middle__left {
+    grid-area: middle-left;
+    display: flex;
+    align-items: center;
+}
+
+.overlay__button--nav--previous {}
+
+.overlay__middle__center {
+    grid-area: middle-center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skibuss-gallery .overlay__image {
+    max-height: 100%;
+}
+
+.overlay__middle__right {
+    grid-area: middle-right;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.skibuss-gallery .overlay__button--nav--next {}
+
+.overlay__bottom {
+    grid-area: bottom;
 }
