@@ -68,10 +68,10 @@ const getFloor = thumb => {
     const TRANSLATION = "stāvs";
     const position = thumb.indexOf(FOLDER) + 1;
     const floor = thumb.substring(position, position + 1);
-    if (floor === "0") {
-        return "";
-    } else {
+    if (floor === "1" || floor === "2" || floor === "3") {
         return `${floor} ${TRANSLATION}`;
+    } else {
+        return "";
     }
 }
 
